@@ -1,0 +1,34 @@
+PROCEDURE swap(VAR left, VAR right : INTEGER)
+VAR
+    tmp : INTEGER;          //Type Integer
+BEGIN
+    tmp := left;            //Move the value in left to tmp
+    left := right;          //move the value in right to left
+    right := tmp;           //move the value in tmp tp right
+END
+
+/* * Bubble sort * */
+// {0, 1, 2, 3, 4, 5} Indexes    //Index is the list or number of the integer
+// {4, 3, 7, 5, 8, 2} Values     //bcz index 0 is > index 1, swap occur right
+// {3, 4, 7, 5, 8, 2}            //bcz index 2 is > index 3, swap occur right  //bcz index 5 is < index 4, swap occur left
+// {3, 4, 5, 7, 2, 8}            //bcz index 4 is < index 3, swap occur left
+// {3, 4, 5, 2, 7, 8}            //bcz index 3 is < index 2, swap occur left   //bcz index 2 is < index 1, swap occur left  
+                                 //bcz index 1 is < index 0, swap occur left
+// {2, 3, 4, 5, 7, 8}            //swap complete
+
+
+
+PROCEDURE bubble_sort(VAR tab : ARRAY_OF INTEGER)
+VAR
+    i, j, n : INTEGER;                            //Type Integer
+BEGIN
+    n := tab.length;                              //n of interger equal lenght of tab
+    FOR i FROM 0 TO n STEP 1  DO                  //i starts from index 0 to tab lenght and do a step at a time
+        // Last i elements are already in place   //
+        FOR j FROM 0 TO n-i STEP 1  DO            //j start from index 0 to lenght of tab minus i, start;
+            IF (tab[j] > tab[j+1]) THEN           //if tab which is J is greater than J plus 1;
+                swap(tab[j], tab[j+1])            //then swap occur
+            END_IF
+        END_FOR
+    END_FOR
+END
